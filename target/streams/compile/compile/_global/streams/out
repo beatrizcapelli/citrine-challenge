@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/home/beatriz/citrine-challenge/citrine-challenge/app/actors/UnitsActor.scala:55:27: recursive value convertedUnit needs type[0m
-[0m[[0m[31merror[0m] [0m[0m      val convertedUnit = convertedUnit(input.units, tokens, convertedTokens)[0m
-[0m[[0m[31merror[0m] [0m[0m                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -1,7 +1,0 @@
-[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/beatriz/citrine-challenge/citrine-challenge/conf/routes,/home/beatriz/citrine-challenge/citrine-challenge/target/scala-2.13/classes/routes)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/beatriz/citrine-challenge/citrine-challenge/conf/application.conf,/home/beatriz/citrine-challenge/citrine-challenge/target/scala-2.13/classes/application.conf)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/beatriz/citrine-challenge/citrine-challenge/conf/dev.conf,/home/beatriz/citrine-challenge/citrine-challenge/target/scala-2.13/classes/dev.conf)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/beatriz/citrine-challenge/citrine-challenge/conf/application.dev.ini,/home/beatriz/citrine-challenge/citrine-challenge/target/scala-2.13/classes/application.dev.ini)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/beatriz/citrine-challenge/citrine-challenge/conf/messages,/home/beatriz/citrine-challenge/citrine-challenge/target/scala-2.13/classes/messages)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(/home/beatriz/citrine-challenge/citrine-challenge/conf/logback.xml,/home/beatriz/citrine-challenge/citrine-challenge/target/scala-2.13/classes/logback.xml)[0m
