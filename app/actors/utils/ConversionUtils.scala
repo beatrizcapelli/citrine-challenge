@@ -11,7 +11,7 @@ import scala.tools.reflect.ToolBox
 
 object ConversionUtils extends Logging {
 
-  def convert(input: String, validUnits: ValidUnits) = {
+  def convert(input: String, validUnits: ValidUnits): ConvertUnitsOutput = {
 
     val units = identifyUnits(input)
 
