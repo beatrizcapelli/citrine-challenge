@@ -1,16 +1,47 @@
+package actors
+
+import java.io.File
+
+import actors.utils.datatypes.ServiceTypes.{ConvertUnitsFailure, ConvertUnitsInput, ConvertUnitsOutput}
+import akka.actor.{ActorSystem, Props}
+import akka.testkit.{ImplicitSender, TestKit}
+import com.typesafe.config.ConfigFactory
 import org.scalatest.BeforeAndAfterAll
-import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.flatspec.AnyFlatSpecLike
 import org.scalatest.matchers.should.Matchers
 import org.slf4s.Logging
 
-class UnitsActorSpec
-    extends AnyFlatSpec
+class UnitsActorSpec(val configFile: String = "./conf/test.conf")
+    extends TestKit(
+      ActorSystem("Test",
+                  ConfigFactory
+                    .parseFile(new File(configFile))
+                    .resolve()
+                    .getConfig("application")))
+    with ImplicitSender
+    with AnyFlatSpecLike
     with Matchers
-    with Logging
-    with BeforeAndAfterAll {
+    with BeforeAndAfterAll
+    with Logging {
 
-  it should "test" in {
-    true
+  val unitsActor = system.actorOf(Props[UnitsActor], "units")
+
+  it should "succeed to convert known units" in {
+    val input = ConvertUnitsInput("(degree/minute)")
+    unitsActor ! input
+    val output = expectMsgClass(classOf[ConvertUnitsOutput])
+
+    output.unit_name shouldBe "(rad/s)"
+    output.multiplication_factor shouldBe 0.00029088820866572d
   }
 
+  it should "fail to convert unknown units" in {
+    val input = ConvertUnitsInput("(degree/year)")
+    unitsActor ! input
+    val output = expectMsgClass(classOf[ConvertUnitsFailure])
+
+    output.unit_name shouldBe "(degree/year)"
+    output.error shouldBe ""
+    output.error_description shouldBe ""
+  }
 }
