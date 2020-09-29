@@ -62,7 +62,8 @@ class UnitsController @Inject()(
 
   def getQueryString(request: Request[AnyContent]) = {
     val queryStringOption = request.getQueryString("units")
-    if (queryStringOption.isEmpty) {
+    if (queryStringOption.isEmpty || queryStringOption.get.isEmpty) {
+      log.error(s"failed to parse request - units is mandatory input")
       throw new IllegalArgumentException("units is mandatory input")
     }
     queryStringOption.get

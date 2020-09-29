@@ -12,15 +12,15 @@ libraryDependencies += guice
 
 libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
-libraryDependencies += "org.scalatest" % "scalatest_2.13" % "3.2.2" % Test
-
-libraryDependencies += "com.typesafe.akka" % "akka-testkit_2.13" % "2.6.9" % Test
-
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3"
 
 libraryDependencies += "com.typesafe.akka" % "akka-actor_2.13" % "2.6.5"
 
+libraryDependencies += "com.typesafe.akka" % "akka-testkit_2.13" % "2.6.5"
+
 libraryDependencies += "ch.timo-schmid" % "slf4s-api_2.13" % "1.7.30"
+
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0"
 
 lazy val commonSettings = Seq(
   name := "citrine-challenge",

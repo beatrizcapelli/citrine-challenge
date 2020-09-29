@@ -8,6 +8,7 @@ import org.slf4s.Logging
 import scala.annotation.tailrec
 import scala.reflect.runtime.currentMirror
 import scala.tools.reflect.ToolBox
+import scala.util.{Failure, Success, Try}
 
 object ConversionUtils extends Logging {
 
@@ -58,7 +59,14 @@ object ConversionUtils extends Logging {
       }
     }
 
+    if (units.isEmpty) {
+      log.error(s"failed to identify conversions - empty units input")
+      throw new IllegalArgumentException("empty units input")
+    }
+
     if (units.size != conversionObjects.size) {
+      log.error(
+        s"failed to identify conversions - some units were not found on reference data")
       throw new IllegalArgumentException(
         "some units were not found on reference data")
     }
@@ -86,8 +94,16 @@ object ConversionUtils extends Logging {
   }
 
   private def calculate(expression: String) = {
-    val toolbox = currentMirror.mkToolBox()
-    toolbox.eval(toolbox.parse(expression)).toString.toDouble
+    Try {
+      val toolbox = currentMirror.mkToolBox()
+      toolbox.eval(toolbox.parse(expression)).toString.toDouble
+    } match {
+      case Success(value) => value
+      case Failure(_) => {
+        log.error(s"failed to calculate formula - invalid input syntax")
+        throw new IllegalArgumentException("invalid input syntax")
+      }
+    }
   }
 
 }
